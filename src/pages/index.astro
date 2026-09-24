@@ -40,8 +40,13 @@ function truncate(text: string, max = 130) {
     </div>
   </section>
 
+  <hr />
+
   <section>
-    <h2>Latest posts</h2>
+    <div class="section-heading">
+      <h2>Latest posts</h2>
+      <a class="pill-link" href="/blog/">All Posts</a>
+    </div>
     <div class="prose">
       {posts.length === 0 ? (
         <p class="note">No posts published yet &mdash; check back soon.</p>
@@ -54,16 +59,22 @@ function truncate(text: string, max = 130) {
                 {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </p>
               <p class="entry-desc">{post.data.description}</p>
+              <a class="read-more" href={`/blog/${post.id}/`}>Read more &rarr;</a>
             </li>
           ))}
         </ul>
       )}
-      <p><a href="/blog/">View all posts &rarr;</a></p>
     </div>
   </section>
 
+  <hr />
+
   <section>
-    <h2>Selected work</h2>
+    <div class="section-heading">
+      <h2>Selected work</h2>
+      <a class="pill-link" href="/projects/">All Projects</a>
+      <a class="pill-link" href="/freelance/">All Freelance</a>
+    </div>
     {selectedWork.length === 0 ? (
       <p class="note">Projects coming soon.</p>
     ) : (
@@ -76,13 +87,12 @@ function truncate(text: string, max = 130) {
             <div class="card-links">
               {item.data.repo && <a href={item.data.repo} target="_blank" rel="noopener noreferrer">code</a>}
               {item.data.url && <a href={item.data.url} target="_blank" rel="noopener noreferrer">live</a>}
-              {item.kind === 'freelance' && <a href={`/freelance/${item.id}/`}>details &rarr;</a>}
-              {item.kind === 'project' && <a href={`/projects/${item.id}/`}>details &rarr;</a>}
+              {item.kind === 'freelance' && <a href={`/freelance/${item.id}/`}>Read more &rarr;</a>}
+              {item.kind === 'project' && <a href={`/projects/${item.id}/`}>Read more &rarr;</a>}
             </div>
           </div>
         ))}
       </div>
     )}
-    <p><a href="/projects/">View all projects &rarr;</a> &middot; <a href="/freelance/">Freelance work &rarr;</a></p>
   </section>
 </BaseLayout>

@@ -1,16 +1,16 @@
 :root {
-  --bg: #0a0a0a;
-  --bg-raised: #131313;
+  --bg: #1b1b1e;
+  --bg-raised: #232327;
   --fg: #f2efe9;
-  --muted: #948f86;
-  --border: #2a2825;
+  --muted: #9a978f;
+  --border: #34343a;
   --accent: #e2543f;
   --accent-dim: #8a3226;
   --accent-glow: rgba(226, 84, 63, 0.35);
-  --accent-wash: rgba(226, 84, 63, 0.08);
-  --accent-wash-strong: rgba(226, 84, 63, 0.14);
-  --code-bg: #171513;
-  --noise-opacity: 0.14;
+  --accent-wash: rgba(226, 84, 63, 0.1);
+  --accent-wash-strong: rgba(226, 84, 63, 0.16);
+  --code-bg: #29292e;
+  --noise-opacity: 0.08;
   --mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
   --display: "MedievalSharp", "Copperplate", cursive, serif;
 }
@@ -142,12 +142,23 @@ hr {
 }
 
 .brand-mark {
-  font-family: var(--display);
-  font-size: 1.6rem;
-  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   text-decoration: none;
+  color: var(--fg);
+  font-weight: 700;
+  font-size: 1.05rem;
   line-height: 1;
   flex-shrink: 0;
+}
+
+.brand-icon {
+  font-size: 1.1rem;
+}
+
+.brand-dot {
+  color: var(--accent);
 }
 
 .main-nav {
@@ -492,6 +503,41 @@ html[data-theme="light"] .icon-moon {
   font-size: 0.72rem;
   color: var(--muted);
   margin: 0 0.3em 0.3em 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.section-heading h2 {
+  margin: 0;
+}
+
+.pill-link {
+  display: inline-block;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.25em 0.9em;
+  font-size: 0.75rem;
+  color: var(--fg);
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.pill-link:hover {
+  opacity: 1;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.read-more {
+  display: inline-block;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
 }
 
 .lede {
