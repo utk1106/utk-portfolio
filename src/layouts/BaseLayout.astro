@@ -61,6 +61,9 @@ function isActive(href: string) {
             <span class="icon-moon" aria-hidden="true">🌙</span>
             <span class="icon-sun" aria-hidden="true">☀️</span>
           </button>
+          <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span aria-hidden="true">☰</span>
+          </button>
         </div>
       </div>
       <p class="sidebar-bio">
@@ -102,6 +105,17 @@ function isActive(href: string) {
         var next = current === 'light' ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('utk-theme', next);
+      });
+    })();
+  </script>
+  <script is:inline>
+    (function () {
+      var btn = document.getElementById('nav-toggle');
+      var sidebar = document.querySelector('.sidebar');
+      if (!btn || !sidebar) return;
+      btn.addEventListener('click', function () {
+        var isOpen = sidebar.classList.toggle('nav-open');
+        btn.setAttribute('aria-expanded', String(isOpen));
       });
     })();
   </script>
