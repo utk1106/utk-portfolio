@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const items = await getCollection('freelance');
+  return items.map((item) => ({
+    params: { id: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+---
+
+<BaseLayout title={item.data.title} description={item.data.description}>
+  <div class="prose">
+    <h1>{item.data.title}</h1>
+    {item.data.client && <p class="entry-meta">Client: {item.data.client}</p>}
+    {item.data.tags.length > 0 && (
+      <div class="stack" style="margin-bottom: 1.5rem;">
+        {item.data.tags.map((tag) => <span class="tag-pill">{tag}</span>)}
+      </div>
+    )}
+    <Content />
+    <p class="card-links">
+      {item.data.repo && <a href={item.data.repo} target="_blank" rel="noopener noreferrer">code &rarr;</a>}
+      {item.data.url && <a href={item.data.url} target="_blank" rel="noopener noreferrer">live &rarr;</a>}
+    </p>
+    <p><a href="/freelance/">&larr; back to freelance work</a></p>
+  </div>
+</BaseLayout>

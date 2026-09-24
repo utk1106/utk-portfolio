@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Resume" description="Resume of Utkarsh Thaokar, DevOps & Cloud Engineer.">
+  <div class="prose">
+  <h1>Resume</h1>
+
+  <p>
+    <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Download PDF &rarr;</a>
+  </p>
+
+  <p class="lede">
+    DevOps &amp; Cloud Engineer with 4.5 years across AWS and Azure, with hands-on
+    depth in Terraform and Bicep infrastructure-as-code, CI/CD automation
+    (GitLab CI, GitHub Actions, Azure DevOps), and containerized delivery with
+    Docker. Built and maintained enterprise Azure infrastructure for a global
+    Oil &amp; Gas client, owned end-to-end deployment pipelines with blue-green
+    releases, and stood up monitoring and security controls for
+    compliance-sensitive systems.
+  </p>
+
+  <h2>Skills</h2>
+  <ul>
+    <li><strong>Cloud (AWS):</strong> Lambda, API Gateway, Step Functions, SQS/SNS, S3, CloudFront, VPC, Cognito, Route 53, SES</li>
+    <li><strong>Cloud (Azure):</strong> Azure DevOps, Azure Monitor, Key Vault, Private Endpoints, ADLS Gen2</li>
+    <li><strong>Infrastructure as Code:</strong> Terraform, CloudFormation, SAM, CDK, Bicep, ARM, Ansible, PowerShell</li>
+    <li><strong>CI/CD:</strong> GitHub Actions (OIDC federation), GitLab CI/CD, Azure DevOps, Jenkins (familiar)</li>
+    <li><strong>Containers &amp; Orchestration:</strong> Docker, Docker Compose, Kubernetes (k3s homelab), Helm</li>
+    <li><strong>Observability &amp; Reliability:</strong> CloudWatch, Azure Monitor, Prometheus, Grafana, ELK Stack, SLOs/MTTR, chaos &amp; load testing, on-call incident response</li>
+    <li><strong>Databases &amp; Scripting:</strong> DynamoDB (single-table design), PostgreSQL / RDS, Python, Bash / Shell, Linux</li>
+    <li><strong>Security &amp; Access:</strong> IAM least-privilege, Secrets Manager, secret rotation, Azure Key Vault, RBAC</li>
+    <li><strong>AI / GenAI:</strong> Anthropic Claude API, LLM tool-use / function calling, structured-output generation, retrieval-grounded responses</li>
+  </ul>
+
+  <h2>Experience</h2>
+
+  <h3>DevOps Engineer &mdash; Netnology Solutions Pvt. Ltd. &middot; Pune &middot; 03/2025 &ndash; Present</h3>
+  <ul>
+    <li>Sole DevOps owner of a ground-up platform: built the CI/CD, containerization, and deployment automation from scratch with no prior infrastructure in place.</li>
+    <li>Designed modular GitLab CI/CD pipelines with automated build, test, and deploy stages across 5+ environments, replacing a fully manual release process.</li>
+    <li>Containerized the full stack with Docker and Docker Compose, enforcing dev/staging/prod parity that eliminated most environment-drift deployment failures.</li>
+    <li>Implemented centralized logging with the ELK Stack, aggregating container and application logs into Elasticsearch and building Kibana dashboards for faster incident diagnosis.</li>
+    <li>Built AWS deployment pipelines for Python (FastAPI) and Java backend services with automated rollback and health-check gating on every release.</li>
+  </ul>
+
+  <h3>Site Reliability Engineer &mdash; Triguna Legal &middot; Pune &middot; 02/2024 &ndash; 02/2025</h3>
+  <ul>
+    <li>Built monitoring and alerting from zero for a compliance-sensitive legal environment, cutting detection and response time from reactive/manual to proactive.</li>
+    <li>Implemented RBAC and data-protection controls across systems handling sensitive legal data, and passed 3 external security audits with no critical findings.</li>
+    <li>Hardened network security (segmentation, firewall policy, VPN, endpoint hardening) to meet client-mandated security standards.</li>
+  </ul>
+
+  <h3>Cloud Consultant &mdash; Rapid Circle &middot; Pune &middot; 03/2022 &ndash; 01/2024</h3>
+  <p class="entry-meta">Azure data-platform delivery for a global Oil &amp; Gas client (Shell, Amsterdam)</p>
+  <ul>
+    <li>Re-engineered a global Oil &amp; Gas client's Azure estate, migrating an existing ARM, Bicep, and PowerShell provisioning setup to modular, standardized Terraform IaC managed in Azure DevOps.</li>
+    <li>Diagnosed recurring Terraform state drift and built drift detection with alerting, cutting unplanned configuration failures and making the managed environments materially more reliable.</li>
+    <li>Built and migrated the client's production CI/CD from Azure DevOps to GitHub Actions, automating build, test, and deployment for the Azure data platform with zero-downtime blue-green releases.</li>
+    <li>Secured Azure environments (Key Vault, Private Endpoints, ADLS Gen2, storage) for secrets management and enterprise data-governance compliance.</li>
+    <li>Led production monitoring and on-call incident response for the client's Azure data platform, standing up Azure Monitor and custom alerts.</li>
+  </ul>
+
+  <h2>Education</h2>
+  <p>Bachelor of Information Technology, Savitribai Phule Pune University (SPPU) &middot; CGPA 7.74 &middot; 2022</p>
+
+  <h2>Certifications</h2>
+  <ul>
+    <li>Oracle Certified Professional: Java SE Programmer (1Z0-808) &middot; 2023</li>
+  </ul>
+
+  <h2>Languages</h2>
+  <p>English &middot; Hindi &middot; Marathi</p>
+  </div>
+</BaseLayout>

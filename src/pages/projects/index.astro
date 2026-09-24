@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+function truncate(text: string, max = 160) {
+  return text.length > max ? `${text.slice(0, max).trimEnd()}…` : text;
+}
+---
+
+<BaseLayout title="Projects" description="Personal projects and experiments by Utkarsh Thaokar.">
+  <h1>Projects</h1>
+  <p class="lede prose">
+    Things I build outside of client and work hours &mdash; homelabs, tools, and
+    experiments. Client and freelance work lives on the <a href="/freelance/">Freelance</a> page.
+  </p>
+
+  {projects.length === 0 ? (
+    <p class="note prose">
+      Nothing published here yet. My Kubernetes (k3s) homelab is currently in
+      progress &mdash; it'll show up here once it's actually running, not before.
+      In the meantime, see my <a href="https://github.com/utk1106" target="_blank" rel="noopener noreferrer">GitHub</a>.
+    </p>
+  ) : (
+    <div class="card-grid">
+      {projects.map((project) => (
+        <div class="card">
+          <h3><a href={`/projects/${project.id}/`}>{project.data.title}</a></h3>
+          <p>{truncate(project.data.description)}</p>
+          {project.data.tags.length > 0 && (
+            <div class="stack">
+              {project.data.tags.map((tag) => <span class="tag-pill">{tag}</span>)}
+            </div>
+          )}
+          <div class="card-links">
+            {project.data.repo && <a href={project.data.repo} target="_blank" rel="noopener noreferrer">code</a>}
+            {project.data.url && <a href={project.data.url} target="_blank" rel="noopener noreferrer">live</a>}
+            <a href={`/projects/${project.id}/`}>details &rarr;</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+</BaseLayout>

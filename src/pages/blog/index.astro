@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Blog" description="Notes on infrastructure, incidents, and things I've built.">
+  <h1>Blog</h1>
+  <div class="prose">
+    <p class="lede">Notes on infrastructure, incidents, and things I've built &mdash; written after the fact, not while I'm still panicking.</p>
+
+    {posts.length === 0 ? (
+      <p class="note">No posts published yet &mdash; check back soon.</p>
+    ) : (
+      <ul class="entry-list">
+        {posts.map((post) => (
+          <li>
+            <h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
+            <p class="entry-meta">
+              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              {post.data.tags.length > 0 && <> &middot; </>}
+              {post.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
+            </p>
+            <p class="entry-desc">{post.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</BaseLayout>

@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const items = (await getCollection('freelance')).sort((a, b) => a.data.order - b.data.order);
+
+function truncate(text: string, max = 160) {
+  return text.length > max ? `${text.slice(0, max).trimEnd()}…` : text;
+}
+---
+
+<BaseLayout title="Freelance" description="Freelance and client projects by Utkarsh Thaokar.">
+  <h1>Freelance</h1>
+  <p class="lede prose">
+    Client and collaborative work I've built outside my day job. If you have
+    an idea you want help building, or a project you'd like help maintaining
+    or contributing to, see <a href="/contact/">Contact</a>.
+  </p>
+
+  {items.length === 0 ? (
+    <p class="note prose">Nothing published here yet.</p>
+  ) : (
+    <div class="card-grid">
+      {items.map((item) => (
+        <div class="card">
+          <h3><a href={`/freelance/${item.id}/`}>{item.data.title}</a></h3>
+          {item.data.client && <p class="meta">Client: {item.data.client}</p>}
+          <p>{truncate(item.data.description)}</p>
+          {item.data.tags.length > 0 && (
+            <div class="stack">
+              {item.data.tags.map((tag) => <span class="tag-pill">{tag}</span>)}
+            </div>
+          )}
+          <div class="card-links">
+            {item.data.repo && <a href={item.data.repo} target="_blank" rel="noopener noreferrer">code</a>}
+            {item.data.url && <a href={item.data.url} target="_blank" rel="noopener noreferrer">live</a>}
+            <a href={`/freelance/${item.id}/`}>details &rarr;</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+</BaseLayout>

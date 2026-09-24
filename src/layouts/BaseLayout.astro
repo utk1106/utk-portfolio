@@ -1,0 +1,109 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Utkarsh Thaokar — DevOps & Cloud Engineer. Notes on infrastructure, projects, and freelance work." } = Astro.props;
+const { pathname } = Astro.url;
+
+const navItems = [
+  { href: '/', label: 'Home', icon: '🏠' },
+  { href: '/about/', label: 'About', icon: '💾' },
+  { href: '/blog/', label: 'Blog', icon: '📝' },
+  { href: '/projects/', label: 'Projects', icon: '📋' },
+  { href: '/freelance/', label: 'Freelance', icon: '🤝' },
+  { href: '/resume/', label: 'Resume', icon: '📄' },
+  { href: '/contact/', label: 'Contact', icon: '✉️' },
+];
+
+function isActive(href: string) {
+  if (href === '/') return pathname === '/';
+  return pathname.startsWith(href);
+}
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title} · UTK</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="alternate" type="application/rss+xml" title="UTK" href="/rss.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script is:inline>
+    (function () {
+      var stored = localStorage.getItem('utk-theme');
+      var theme = stored === 'light' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <div class="site-shell">
+    <aside class="sidebar">
+      <div class="brand-row">
+        <a class="brand" href="/">
+          <span class="brand-icon" aria-hidden="true">💾</span>
+          <span class="brand-name">utk<span class="brand-dot">.</span>dev</span>
+        </a>
+        <div class="theme-controls">
+          <span class="accent-dot" aria-hidden="true"></span>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme">
+            <span class="icon-moon" aria-hidden="true">🌙</span>
+            <span class="icon-sun" aria-hidden="true">☀️</span>
+          </button>
+        </div>
+      </div>
+      <p class="sidebar-bio">
+        I'm Utkarsh, a DevOps &amp; Cloud engineer. This is my digital
+        record. 🛠️
+      </p>
+
+      <nav class="side-nav">
+        {navItems.map((item) => (
+          <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+            <span class="nav-icon" aria-hidden="true">{item.icon}</span>
+            <span>{item.label}</span>
+          </a>
+        ))}
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="icon-row">
+          <a href="mailto:thaokarutkarsh@gmail.com" title="Email" aria-label="Email">✉️</a>
+          <a href="https://github.com/utk1106" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">🐙</a>
+          <a href="https://linkedin.com/in/utkarsh-thaokar" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">🔗</a>
+          <a href="/rss.xml" title="RSS" aria-label="RSS">📡</a>
+        </div>
+        <div class="sidebar-copy">&copy; {new Date().getFullYear()} Utkarsh Thaokar</div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <slot />
+    </main>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var btn = document.getElementById('theme-toggle');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var current = document.documentElement.getAttribute('data-theme');
+        var next = current === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('utk-theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>
