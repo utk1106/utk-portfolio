@@ -17,7 +17,13 @@ const { Content } = await render(item);
 <BaseLayout title={item.data.title} description={item.data.description}>
   <div class="prose">
     <h1>{item.data.title}</h1>
-    {item.data.client && <p class="entry-meta">Client: {item.data.client}</p>}
+    {(item.data.client || item.data.date) && (
+      <p class="entry-meta">
+        {item.data.client}
+        {item.data.client && item.data.date && ' · '}
+        {item.data.date}
+      </p>
+    )}
     {item.data.tags.length > 0 && (
       <div class="stack" style="margin-bottom: 1.5rem;">
         {item.data.tags.map((tag) => <span class="tag-pill">{tag}</span>)}

@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Icon from '../components/Icon.astro';
 
 interface Props {
   title: string;
@@ -49,7 +50,7 @@ function isActive(href: string) {
   <header class="top-nav">
     <div class="top-nav-inner">
       <a class="brand-mark" href="/">
-        <span class="brand-icon" aria-hidden="true">💾</span>
+        <span class="brand-icon" aria-hidden="true"><Icon name="save" size={18} /></span>
         <span class="brand-text">utk<span class="brand-dot">.</span>dev</span>
       </a>
 
@@ -61,13 +62,13 @@ function isActive(href: string) {
 
       <div class="nav-controls">
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme">
-          <span class="icon-moon" aria-hidden="true">🌙</span>
-          <span class="icon-sun" aria-hidden="true">☀️</span>
+          <span class="icon-moon"><Icon name="moon" size={16} /></span>
+          <span class="icon-sun"><Icon name="sun" size={16} /></span>
         </button>
         <span class="accent-dot" aria-hidden="true"></span>
-        <a class="nav-social" href="https://github.com/utk1106" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">🐙</a>
+        <a class="nav-social" href="https://github.com/utk1106" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><Icon name="github" size={17} /></a>
         <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
-          <span aria-hidden="true">☰</span>
+          <Icon name="menu" size={19} />
         </button>
       </div>
     </div>
@@ -80,10 +81,10 @@ function isActive(href: string) {
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="icon-row">
-        <a href="mailto:thaokarutkarsh@gmail.com" title="Email" aria-label="Email">✉️</a>
-        <a href="https://github.com/utk1106" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">🐙</a>
-        <a href="https://linkedin.com/in/utkarsh-thaokar" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">🔗</a>
-        <a href="/rss.xml" title="RSS" aria-label="RSS">📡</a>
+        <a href="mailto:thaokarutkarsh@gmail.com" title="Email" aria-label="Email"><Icon name="mail" size={18} /></a>
+        <a href="https://github.com/utk1106" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><Icon name="github" size={18} /></a>
+        <a href="https://linkedin.com/in/utkarsh-thaokar" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><Icon name="linkedin" size={18} /></a>
+        <a href="/rss.xml" title="RSS" aria-label="RSS"><Icon name="rss" size={18} /></a>
       </div>
       <div class="footer-copy">&copy; {new Date().getFullYear()} Utkarsh Thaokar</div>
     </div>

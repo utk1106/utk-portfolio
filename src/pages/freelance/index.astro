@@ -24,7 +24,13 @@ function truncate(text: string, max = 160) {
       {items.map((item) => (
         <div class="card">
           <h3><a href={`/freelance/${item.id}/`}>{item.data.title}</a></h3>
-          {item.data.client && <p class="meta">Client: {item.data.client}</p>}
+          {(item.data.client || item.data.date) && (
+            <p class="meta">
+              {item.data.client}
+              {item.data.client && item.data.date && ' · '}
+              {item.data.date}
+            </p>
+          )}
           <p>{truncate(item.data.description)}</p>
           {item.data.tags.length > 0 && (
             <div class="stack">

@@ -233,12 +233,18 @@ hr {
   color: var(--fg);
 }
 
-.icon-sun {
+.icon-sun,
+.icon-moon {
   display: none;
+  align-items: center;
+}
+
+.icon-moon {
+  display: flex;
 }
 
 html[data-theme="light"] .icon-sun {
-  display: inline;
+  display: flex;
 }
 
 html[data-theme="light"] .icon-moon {
@@ -274,9 +280,10 @@ html[data-theme="light"] .icon-moon {
 }
 
 .icon-row a {
+  display: flex;
   text-decoration: none;
   opacity: 0.75;
-  filter: grayscale(0.3);
+  color: var(--fg);
 }
 
 .icon-row a:hover {
